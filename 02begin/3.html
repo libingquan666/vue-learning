@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app3">
+        <div v-if="isLogin">欢迎 钉钉
+            <a href="" @click = "logout">注销</a>
+        </div>
+        <div>
+            <a href="" @click = "login">登录</a>  <a href="">注册</a>
+        </div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#app3",
+            data:{
+                isLogin:true
+            },
+            methods:{
+                logout(){
+                    console.log("lougout....");
+                    isLogin:false;
+                },
+                login(){
+                    isLogin=true;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

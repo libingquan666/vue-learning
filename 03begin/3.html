@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组数</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        ul {
+            list-style: none;
+        }
+
+        ul>li {
+            float: left;
+            border: 1px solid blue;
+            width: 36px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app3">
+        <ul>
+            <li v-for="i of pageCount" :key="i">
+                {{i}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: "#app3",
+            data: {
+                pageCount: 16,
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>点击按钮显示图片</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+    .alert{
+        width: 300px;
+        height: 100px;
+        background-color: coral;
+        margin-left: 200px;
+    }
+    </style>
+</head>
+<body>
+    <div id="app2">
+        <!--按钮-->
+        <button @click = "openIt">显示对话框</button>
+        <div v-show="open" class="alert">
+        <!--要显示的内容-->
+        您的浏览器版本过低。。。。。。!
+        <!--点击后关闭-->
+        <span @click = "closeIt">x</span>
+        </div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#app2",
+            data:{
+                open:false,
+            },
+           methods:{
+               openIt(){
+                   this.open=true;
+               },
+               closeIt(){
+                   this.open=false;//是否现实实现变量
+               },
+           } 
+        });
+    </script>
+</body>
+</html>
