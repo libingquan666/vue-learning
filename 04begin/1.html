@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>函数监控变量</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app1">
+        <input type="text" v-model:value="keywords">
+        <button @click = "search">搜索一下</button>
+        <h4>输入的关键字是{{keywords}}</h4>
+    </div>
+    <script>
+        // var data={
+        //     keywords:"macbook 15"
+        // };
+        var vm = new Vue({
+            el:"#app1",
+            data:{
+                keywords:"macbook 15",
+            },
+            methods:{
+                search(){
+                    console.log(`调用了search函数,搜索的字符串是: ${this.keywords}`);
+                }
+            },
+            watch:{
+                //函数名字和监控变量名一样
+                keywords(){
+                    this.search();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

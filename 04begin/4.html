@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .msg{
+            display: inline-block;
+            width: 180px;
+            height: 25px;
+            border: 1px solid #555;
+            line-height: 25px;
+            text-align: center;
+        }
+        .success{
+            background-color: cadetblue;
+        }
+        .fail{
+            background-color: crimson;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="phone"/>
+        <span class="msg": class="{success,fail}">{{msg}}</span>
+    </div>
+    <script>
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                phone:"188791557",
+                msg:"电话号码是不正确的",//提示信息
+                myMsg:{
+
+                success:true,
+                fail:false,
+            }
+            },
+         methods:{
+
+         },
+         watch:(){
+             phone(){
+                var reg= /^1[33-9]\d{9}$/; 
+                if(reg.text(this.phone)==true){
+                    this.myMsg.success=true;
+                    this.myMsg.fail=false;
+                    this.myMsg.fail=false;
+                    this.myMsg.msg="电话号码是正确的";
+                }else{
+                    this.myMsg.success=false;
+                    this.myMsg.fail=true;
+                    this.myMsg.msg="电话号码是正确的！";
+                }
+             }
+         }
+        })
+    </script>
+</body>
+</html>

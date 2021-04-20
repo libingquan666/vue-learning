@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+</head>
+<body>
+        <div id="app">
+            <button @click="getIndexData">首页数据</button>
+            <h3>首页推荐</h3>
+            <ul>
+                <li>产品编号 产品名称 产品明细 单价</li>
+                <li v-for="(item,i) of items" :key=i>
+                    {{item.pid}} {{item.title}} {{item.details}} {{item.price}}
+                </li>
+            </ul>
+            <button @click="getIndexData_topSaleItems">首页数据-top</button>
+            <ul>
+                    <li>产品编号 产品名称 产品明细 单价</li>
+                    <li v-for="(item,i) of topSaleItems" :key=i>
+                        {{item.pid}} {{item.title}} {{item.details}} {{item.price}}
+                    </li>
+                </ul>
+        </div>
+
+
+        <script>
+             axios.defaults.baseURL = "http://115.159.160.93:8080";
+            var vm =new Vue({
+                el:"#app",
+                
+                data:{
+                    recommendedItems:[],
+                    items:[],
+                    topSaleItems:[],
+                },
+                 
+
+                 methods:{
+                    getIndexData(){
+                        axios.get("/index").then((res=>{
+                            console.log(res.data.recommendedItems);
+                            this.items=res.data.recommendedItems;
+                        }))
+
+                        console.log(data)
+                    },
+                    getIndexData_topSaleItems(){
+                        axios.get("/index").then((res=>{
+                           
+                            this.topSaleItems=res.data.topSaleItems;
+                        }))
+                    }
+                    
+                 },
+            });
+
+        </script>
+</body>
+</html>

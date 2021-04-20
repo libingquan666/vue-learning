@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="isLogin">
+            欢迎 钉钉
+            <a href="" @click.prevent="logout">注销</a>
+        </div>
+        <div v-else>
+            用户 <input type="text" v-model="uname"> 密码 <input type="text" v-model="upwd">
+            <a href="" @click.prevent="login">登录</a> | <a href="">注册</a>
+
+        </div>
+    </div>
+    <script>
+        axios.defaults.baseURL = "http://115.159.160.93:8080";
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                isLogin: false,
+                uname: "dingding",
+                upwd: "123456",
+            },
+            methods: {
+                logout() {
+                    console.log("logout..")
+                    this.isLogin = false;
+                },
+                login() {
+                    let uname = this.uname;
+                    let upwd = this.upwd;
+
+                    // this.islogin = true;
+                    axios.post("/user/login", { uname, upwd }).then(result => {
+                        console.log(result.data);
+                        if (result.data.code == 200) {
+                            this.isLogin = true;
+                        }
+                    });
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
